@@ -1,5 +1,5 @@
 #page {
-    main {
+    & > main {
         transition: linear all 300ms;
         &.light {
             background-color: honeydew;
@@ -10,5 +10,6 @@
         grid-area: main;
         margin: 16px;
         padding: 16px;
+        overflow: scroll;
     }
 }

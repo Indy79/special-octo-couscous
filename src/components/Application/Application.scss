@@ -5,8 +5,7 @@
     width: 100vw;
     height: 100vh;
     grid-template:
-        [header-left] 'head head' 60px [header-right]
-        [main-left] 'nav  main' 1fr [main-right]
-        [footer-left] 'nav  foot' 30px [footer-right]
+        [header-left] 'head head' 12vh [header-right]
+        [main-left] 'nav  main' 88vh [main-right]
         / 160px 1fr;
 }

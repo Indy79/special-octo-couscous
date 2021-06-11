@@ -1,0 +1,10 @@
+.beer-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: scroll;
+    height: 100%;
+    & > .beer-card {
+        margin: 16px;
+    }
+}

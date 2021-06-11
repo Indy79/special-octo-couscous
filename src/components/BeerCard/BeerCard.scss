@@ -1,0 +1,28 @@
+.beer-card {
+    &.light {
+        background-color: grey;
+        color: white;
+    }
+    &.dark {
+        background-color: white;
+    }
+    transition: linear all 350ms;
+    width: 20%;
+    border-radius: 5px;
+    & > header,
+    & > main,
+    & > footer {
+        padding: 16px;
+    }
+    & > header > span {
+        font-weight: bolder;
+    }
+    & > main {
+        & > div > span:first-child {
+            font-weight: bolder;
+        }
+        & > div > span:last-child {
+            font-weight: lighter;
+        }
+    }
+}

@@ -1,11 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import BeerCard from '../../components/BeerCard';
+import ErrorBoundary from '../../components/ErrorBoundary';
+import { fetchRandomBeer } from '../../services/beers.service';
 
-const Homepage = () => (
-    <div>
-        Main page lazy loaded
-        <Link to="/test">link</Link>
-    </div>
-);
+const Homepage = () => {
+    const [randomBeer, setRandomBeer] = useState(undefined);
+    useEffect(() => {
+        fetchRandomBeer().then(setRandomBeer);
+    }, []);
+    return (
+        <div>
+            {randomBeer && (
+                <ErrorBoundary>
+                    <BeerCard beer={randomBeer} onError={false} />
+                </ErrorBoundary>
+            )}
+        </div>
+    );
+};
 
 export default Homepage;
