@@ -1,0 +1,12 @@
+@import '../../../node_modules/normalize.css/normalize.css';
+
+#page {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template:
+        [header-left] 'head head' 60px [header-right]
+        [main-left] 'nav  main' 1fr [main-right]
+        [footer-left] 'nav  foot' 30px [footer-right]
+        / 160px 1fr;
+}

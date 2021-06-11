@@ -1,0 +1,12 @@
+#page {
+    header {
+        transition: linear all 300ms;
+        &.light {
+            background-color: honeydew;
+        }
+        &.dark {
+            background-color: grey;
+        }
+        grid-area: head;
+    }
+}

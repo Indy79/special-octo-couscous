@@ -23,11 +23,15 @@
   },
   "homepage": "https://github.com/Indy79/special-octo-couscous#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.14.5",
+    "@parcel/transformer-sass": "^2.0.0-nightly.718",
     "parcel": "^2.0.0-beta.3.1",
     "prettier": "2.3.1"
   },
   "dependencies": {
+    "normalize.css": "^8.0.1",
     "react": "^0.0.0-experimental-c96b78e0e",
-    "react-dom": "^0.0.0-experimental-c96b78e0e"
+    "react-dom": "^0.0.0-experimental-c96b78e0e",
+    "react-router-dom": "^5.2.0"
   }
 }

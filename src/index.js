@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 
-const Application = () => <div>Mon application</div>;
+import Spinner from './components/Spinner';
 
-ReactDOM.createRoot(document.getElementById('root')).render(<Application />);
+const Application = lazy(() => import('./components/Application'));
+
+ReactDOM.unstable_createRoot(document.getElementById('root')).render(
+    <Suspense fallback={<Spinner />}>
+        <Application />
+    </Suspense>
+);
