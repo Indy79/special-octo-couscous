@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.14.5",
     "@parcel/transformer-sass": "^2.0.0-nightly.718",
+    "@types/react": "^17.0.11",
     "parcel": "^2.0.0-beta.3.1",
     "prettier": "2.3.1"
   },

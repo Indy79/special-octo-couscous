@@ -1,8 +1,5 @@
 import React, { createContext, useReducer, FC } from 'react';
 
-type CONNECT_USER = 'connect_user';
-type DISCONNECT_USER = 'disconnect_user';
-
 type Action =
  | { type: 'connect_user', payload: User }
  | { type: 'loading_user' }
@@ -12,6 +9,12 @@ type State =
  | { status: 'connected', user: User }
  | { status: 'loading', user: void }
  | { status: 'disconnected', user: void };
+
+type ContextState = State & {
+    connect: (user: User) => void
+    disconnect: () => void
+    loading: () => void
+}
 
 export class User {
     username: string
@@ -48,10 +51,16 @@ function reducer(state: State, action: Action): State {
     }
 };
 
-export const UserContext = createContext<State>({ status: 'disconnected' });
+export const UserContext = createContext<ContextState>({ 
+    status: 'disconnected', 
+    user: undefined, 
+    connect: (user: User) => {},
+    disconnect: () => {},
+    loading: () => {}
+});
 
 export const UserProvider: FC = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, { status: 'disconnected' });
+    const [state, dispatch] = useReducer(reducer, { status: 'disconnected', user: undefined });
 
     const connect = (user: User) => dispatch({ type: 'connect_user', payload: user });
     const disconnect = () => dispatch({ type: 'disconnect_user' });
