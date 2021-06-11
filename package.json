@@ -1,0 +1,33 @@
+{
+  "name": "formation-react",
+  "version": "1.0.0",
+  "description": "Formation nouveautés REACT 16 et +",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Indy79/special-octo-couscous.git"
+  },
+  "keywords": [
+    "REACT",
+    "ES6",
+    "Typescript"
+  ],
+  "author": "SERLI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Indy79/special-octo-couscous/issues"
+  },
+  "homepage": "https://github.com/Indy79/special-octo-couscous#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.3.1",
+    "prettier": "2.3.1"
+  },
+  "dependencies": {
+    "react": "^0.0.0-experimental-c96b78e0e",
+    "react-dom": "^0.0.0-experimental-c96b78e0e"
+  }
+}
