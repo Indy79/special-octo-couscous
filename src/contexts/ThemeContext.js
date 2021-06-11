@@ -2,8 +2,8 @@ import React, { createContext, useReducer } from 'react';
 
 const TOGGLE_THEME = 'toggle_theme';
 
-const LIGHT_THEME = 'light';
-const DARK_THEME = 'dark';
+export const LIGHT_THEME = 'light';
+export const DARK_THEME = 'dark';
 
 const initialState = {
     theme: LIGHT_THEME,

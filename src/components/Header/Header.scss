@@ -8,5 +8,14 @@
             background-color: grey;
         }
         grid-area: head;
+        display: flex;
+        flex-direction: row;
+        & > div:first-child {
+            flex-grow: 2;
+            display: flex;
+            padding-left: 16px;
+            align-items: center;
+            font-weight: bold;
+        }
     }
 }
