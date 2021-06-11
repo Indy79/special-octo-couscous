@@ -4,24 +4,27 @@ import Button from '../../Button/Button';
 import { login } from './users.service';
 
 const UserAvatar = () => {
-    const userContext = useContext(UserContext);
-    if (!userContext.isConnected) {
+    const { status, user, connect, disconnect, loading } =
+        useContext(UserContext);
+    if (status === 'disconnected') {
         return (
             <>
                 <Button
-                    onClick={() =>
-                        login('guest', (user) => userContext.connect(user))
-                    }
+                    onClick={() => {
+                        loading();
+                        login('guest', (user) => connect(user));
+                    }}
                 >
                     Log-in
                 </Button>
             </>
         );
     }
+    if (status === 'loading') return <div>Loading...</div>;
     return (
         <>
-            <div>Welcome {userContext.user.username}</div>
-            <Button onClick={userContext.disconnect}>Log-out</Button>
+            <div>Welcome {user.username}</div>
+            <Button onClick={disconnect}>Log-out</Button>
         </>
     );
 };

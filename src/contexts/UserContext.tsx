@@ -1,7 +1,17 @@
 import React, { createContext, useReducer, FC } from 'react';
 
-const CONNECT_USER = 'connect_user';
-const DISCONNECT_USER = 'disconnect_user';
+type CONNECT_USER = 'connect_user';
+type DISCONNECT_USER = 'disconnect_user';
+
+type Action =
+ | { type: 'connect_user', payload: User }
+ | { type: 'loading_user' }
+ | { type: 'disconnect_user' };
+
+type State =
+ | { status: 'connected', user: User }
+ | { status: 'loading', user: void }
+ | { status: 'disconnected', user: void };
 
 export class User {
     username: string
@@ -13,46 +23,39 @@ export class User {
     }
 }
 
-type UserContextState = {
-    user: User
-    isConnected: boolean
-    connect: (user: User) => void
-    disconnect: () => void
-}
-
-const initialState: UserContextState = {
-    user: undefined,
-    isConnected: false,
-    connect: (user: User) => {},
-    disconnect: () => {}
-};
-
-function reducer(state, action): UserContextState {
+function reducer(state: State, action: Action): State {
     switch (action.type) {
-        case CONNECT_USER:
+        case 'connect_user':
             return {
                 ...state,
                 user: action.payload,
-                isConnected: true,
+                status: 'connected',
             };
-        case DISCONNECT_USER:
+        case 'disconnect_user':
             return {
                 ...state,
-                user: {},
-                isConnected: false,
+                user: undefined,
+                status: 'disconnected',
+            };
+        case 'loading_user':
+            return {
+                ...state,
+                user: undefined,
+                status: 'loading',
             };
         default:
-            throw new Error("Action type doesn't exist");
+            return state;
     }
 };
 
-export const UserContext = createContext<UserContextState>(initialState);
+export const UserContext = createContext<State>({ status: 'disconnected' });
 
 export const UserProvider: FC = ({ children }) => {
-    const [state, dispatch] = useReducer<UserContextState>(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, { status: 'disconnected' });
 
-    const connect = (user: User) => dispatch({ type: CONNECT_USER, payload: user });
-    const disconnect = () => dispatch({ type: DISCONNECT_USER });
+    const connect = (user: User) => dispatch({ type: 'connect_user', payload: user });
+    const disconnect = () => dispatch({ type: 'disconnect_user' });
+    const loading = () => dispatch({ type: 'loading_user' });
 
     return (
         <UserContext.Provider
@@ -60,6 +63,7 @@ export const UserProvider: FC = ({ children }) => {
                 ...state,
                 connect: (user: User) => connect(user),
                 disconnect: () => disconnect(),
+                loading: () => loading(),
             }}
         >
             {children}

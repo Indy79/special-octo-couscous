@@ -5,5 +5,5 @@ export const login = (username: string, cb: (user: User) => void): void => {
         const connectedUser = new User(username, `http://avatar.com/${username}`)
         cb(connectedUser)
         clearTimeout(loginFetch)
-    }, 250)   
+    }, 350)   
 }
