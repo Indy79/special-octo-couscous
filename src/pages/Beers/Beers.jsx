@@ -9,9 +9,15 @@ import './Beers.scss';
 
 const Beers = () => {
     const [beers, setBeers] = useState([]);
+    const [beer, setBeer] = useState(undefined);
+    const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
         fetchBeers().then(setBeers);
     }, []);
+    const showModal = (beer) => {
+        setBeer(beer);
+        setIsOpen(true);
+    };
     return (
         <div>
             <h1>Beers</h1>
@@ -22,13 +28,7 @@ const Beers = () => {
                         beer={beer}
                         actions={
                             <div>
-                                <Button
-                                    onClick={() => (
-                                        <Popup>
-                                            <BeerCard beer={beer} />
-                                        </Popup>
-                                    )}
-                                >
+                                <Button onClick={() => showModal(beer)}>
                                     Voir le détail
                                 </Button>
                             </div>
@@ -37,6 +37,11 @@ const Beers = () => {
                 ))}
             </div>
             <Link to="/">Home</Link>
+            {beer && (
+                <Popup isOpen={isOpen} isLeaving={() => setIsOpen(false)}>
+                    <BeerCard beer={beer} />
+                </Popup>
+            )}
         </div>
     );
 };
